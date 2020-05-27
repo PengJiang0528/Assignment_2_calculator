@@ -60,6 +60,12 @@ body{
 .operator:focus, .number:focus, .empty:focus{
 	outline: 0;
 }
+button:nth-child(1){
+	background-color: #eaedef;
+}
+button:nth-child(2){
+	background-color: #eaedef;
+}
 button:nth-child(4){
 	font-size: 20px;
 	background-color: #20b2aa;
