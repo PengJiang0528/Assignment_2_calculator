@@ -125,8 +125,34 @@ for(var i =0;i<number.length;i++){
 function printkeys(num){
 	var output=getOutput();
     var history=getHistory();
-	output=reverseNumberFormat(output)+num;
-    printOutput(output);
+    if (output.includes(".")){
+			
+		if(output[output.length-1]=="."){
+			output=output.replace(/,/g,'');
+			document.getElementById("output-value").innerText=output.toLocaleString("en");
+		}
+		else{
+			console.log(typeof(output));
+			document.getElementById("output-value").innerText=output;
+		}
+			
+	}
+	else{
+		output=reverseNumberFormat(output);
+	}
+	if(output!=NaN){
+			console.log(output);
+			if(output=="0"){
+				output=num;
+			}
+			else{
+				output=output+num;
+			}
+			
+			output=output.replace(/,/g,'');
+			document.getElementById("output-value").innerText=output.toLocaleString("en");
+		}
+	
 }
 function pressOperators(num){
 	if(output==""&&history!=""){
@@ -270,6 +296,29 @@ document.onkeydown = function(evt) {
     	printHistory("");
 		printOutput("");
     }
+    if (evt.keyCode==110){
+    	console.log(".");
+    	var output=getOutput();
+		if (getOutput().includes(".")){
+
+		}
+		else{
+			output=output+".";
+			document.getElementById("output-value").innerText=output.toLocaleString("en");
+		}
+    }
+    if (evt.keyCode==190){
+    	console.log(".");
+    	var output=getOutput();
+		if (getOutput().includes(".")){
+
+		}
+		else{
+			output=output+".";
+			document.getElementById("output-value").innerText=output.toLocaleString("en");
+		}
+    }
+
     if (reverseNumberFormat(output)>1000000000000){
     	printOutput("");
 		printHistory("");
