@@ -155,19 +155,33 @@ function printkeys(num){
 	
 }
 function pressOperators(num){
-	if(output==""&&history!=""){
-				if(isNaN(history[history.length-1])){
-					history= history.substr(0,history.length-1);
-				}
-			}
-			if(output!="" || history!=""){
+	var output=getOutput();
+    var history=getHistory();
+	if(output!="" || history!=""){
 				output= output==""?output:reverseNumberFormat(output);
 				history=history+output;
-				
-				history=history+num;
-				printHistory(history);
-				printOutput("");
-				
+				if(num=="="){
+					var result=eval(history);
+					if(history.includes("/0")==true && history.includes("/0.")==false){
+						printOutput("");
+						printHistory("");
+						alert("Cannot divided by 0, where did you learn your math?")
+					}
+					else if(Number(result)>1000000000000){
+						printOutput("");
+						printHistory("");
+						alert("Bro, the number is toooooooo big!!!!!!");
+					}
+					else{
+					printOutput(result);
+					printHistory("");
+					}
+				}
+				else{
+					history=history+num;
+					printHistory(history);
+					printOutput("");
+				}
 			}
 }
 document.onkeydown = function(evt) {
