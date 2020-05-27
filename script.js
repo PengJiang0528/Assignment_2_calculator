@@ -35,7 +35,7 @@ for(var i =0;i<operator.length;i++){
 		}
 		else if(this.id=="backspace"){
 			var output=reverseNumberFormat(getOutput()).toString();
-			if(output){//if output has a value
+			if(output){
 				output= output.substr(0,output.length-1);
 				printOutput(output);
 			}
@@ -85,43 +85,29 @@ for(var i =0;i<number.length;i++){
 		if (output.includes(".")){
 			
 			if(output[output.length-1]=="."){
-				// output=output+this.id;
-				// output= output.substr(0,output.length-1);
 				output=output.replace(/,/g,'');
 				document.getElementById("output-value").innerText=output.toLocaleString("en");
 			}
 			else{
 				console.log(typeof(output));
-				//output= output.substr(0,output.length-1);
-				//output=output.replace(/,/g,'');
-				document.getElementById("output-value").innerText=output;//.toLocaleString("en");
+				document.getElementById("output-value").innerText=output;
 			}
 			
 		}
 		else{
 			output=reverseNumberFormat(output);
 		}
-
-		/*if (output.includes(".")){
-			alert("asdf");
-			output= output.substr(0,output.length-1);
-			if(output!=NaN){ //if output is a number
-			output=output+this.id;
-			printOutput(output);
-		}
-		break;
-		}
-		else{
-			var output=reverseNumberFormat(getOutput());
-		}*/
-		//var output=reverseNumberFormat(output);
 		if(this.id=="."){
-			console.log("b");
+			if (getOutput().includes(".")){
+
+			}
+			else{
 			output=output+this.id;
 			document.getElementById("output-value").innerText=output.toLocaleString("en");
+			}
+			
 		}
-		else if(output!=NaN){ //if output is a number
-			//console.log(this.id);
+		else if(output!=NaN){
 			console.log(output);
 			if(output=="0"){
 				output=this.id;
@@ -136,241 +122,119 @@ for(var i =0;i<number.length;i++){
 		
 	});
 }
-
-
-/*document.onkeydown = function(event){
-	var key_press = String.fromCharCode(event.keyCode);
-	var key_code = event.keyCode;
-	alert
-}*/
-
+function printkeys(num){
+	var output=getOutput();
+    var history=getHistory();
+	output=reverseNumberFormat(output)+num;
+    printOutput(output);
+}
+function pressOperators(num){
+	if(output==""&&history!=""){
+				if(isNaN(history[history.length-1])){
+					history= history.substr(0,history.length-1);
+				}
+			}
+			if(output!="" || history!=""){
+				output= output==""?output:reverseNumberFormat(output);
+				history=history+output;
+				
+				history=history+num;
+				printHistory(history);
+				printOutput("");
+				
+			}
+}
 document.onkeydown = function(evt) {
     evt = evt || window.event;
     var output=getOutput();
     var history=getHistory();
     if (evt.keyCode==49){
-    	output=reverseNumberFormat(output)+"1";
-    	printOutput(output);
+    	printkeys("1");
     }
     if (evt.keyCode==50){
-    	output=reverseNumberFormat(output)+"2";
-    	printOutput(output);
+    	
+    	printkeys("2");
     }
     if (evt.keyCode==51){
-    	output=reverseNumberFormat(output)+"3";
-    	printOutput(output);
+    	printkeys("3");
     }
     if (evt.keyCode==52){
-    	output=reverseNumberFormat(output)+"4";
-    	printOutput(output);
+    	printkeys("4");
     }
     if (evt.keyCode==53){
-    	output=reverseNumberFormat(output)+"5";
-    	printOutput(output);
+    	printkeys("5");
     }
     if (evt.keyCode==54){
-    	output=reverseNumberFormat(output)+"6";
-    	printOutput(output);
+    	printkeys("6");
     }
     if (evt.keyCode==55){
-    	output=reverseNumberFormat(output)+"7";
-    	printOutput(output);
+    	printkeys("7");
     }
     if (evt.keyCode==56){
-    	output=reverseNumberFormat(output)+"8";
-    	printOutput(output);
+    	printkeys("8");
     }
     if (evt.keyCode==57){
-    	output=reverseNumberFormat(output)+"9";
-    	printOutput(output);
+    	printkeys("9");
     }
     if (evt.keyCode==48){
-    	output=reverseNumberFormat(output)+"0";
-    	printOutput(output);
+    	printkeys("0");
     }
     if (evt.keyCode==97){
-    	output=reverseNumberFormat(output)+"1";
-    	printOutput(output);
+    	printkeys("1");
     }
     if (evt.keyCode==98){
-    	output=reverseNumberFormat(output)+"2";
-    	printOutput(output);
+    	printkeys("2");
     }
     if (evt.keyCode==99){
-    	output=reverseNumberFormat(output)+"3";
-    	printOutput(output);
+    	printkeys("3");
     }
     if (evt.keyCode==100){
-    	output=reverseNumberFormat(output)+"4";
-    	printOutput(output);
+    	printkeys("4");
     }
     if (evt.keyCode==101){
-    	output=reverseNumberFormat(output)+"5";
-    	printOutput(output);
+    	printkeys("5");
     }
     if (evt.keyCode==102){
-    	output=reverseNumberFormat(output)+"6";
-    	printOutput(output);
+    	printkeys("6");
     }
     if (evt.keyCode==103){
-    	output=reverseNumberFormat(output)+"7";
-    	printOutput(output);
+    	printkeys("7");
     }
     if (evt.keyCode==104){
-    	output=reverseNumberFormat(output)+"8";
-    	printOutput(output);
+    	printkeys("8");
     }
     if (evt.keyCode==105){
-    	output=reverseNumberFormat(output)+"9";
-    	printOutput(output);
+    	printkeys("9");
     }
     if (evt.keyCode==96){
-    	output=reverseNumberFormat(output)+"0";
-    	printOutput(output);
+    	printkeys("0");
     }
     if (evt.keyCode==107){
-    	if(output==""&&history!=""){
-				if(isNaN(history[history.length-1])){
-					history= history.substr(0,history.length-1);
-				}
-			}
-			if(output!="" || history!=""){
-				output= output==""?output:reverseNumberFormat(output);
-				history=history+output;
-				
-				history=history+"+";
-				printHistory(history);
-				printOutput("");
-				
-			}
+    	pressOperators("+");
     }
     if (evt.keyCode == 61 && evt.shiftKey){
-    	if(output==""&&history!=""){
-				if(isNaN(history[history.length-1])){
-					history= history.substr(0,history.length-1);
-				}
-			}
-			if(output!="" || history!=""){
-				output= output==""?output:reverseNumberFormat(output);
-				history=history+output;
-				
-				history=history+"+";
-				printHistory(history);
-				printOutput("");
-				
-			}
+    	pressOperators("+");
     }
     if (evt.keyCode==109){
-    	if(output==""&&history!=""){
-				if(isNaN(history[history.length-1])){
-					history= history.substr(0,history.length-1);
-				}
-			}
-			if(output!="" || history!=""){
-				output= output==""?output:reverseNumberFormat(output);
-				history=history+output;
-				
-				history=history+"-";
-				printHistory(history);
-				printOutput("");
-				
-			}
+    	pressOperators("-");
     }
     if (evt.keyCode==173){
-    	if(output==""&&history!=""){
-				if(isNaN(history[history.length-1])){
-					history= history.substr(0,history.length-1);
-				}
-			}
-			if(output!="" || history!=""){
-				output= output==""?output:reverseNumberFormat(output);
-				history=history+output;
-				
-				history=history+"-";
-				printHistory(history);
-				printOutput("");
-				
-			}
+    	pressOperators("-");
     }
     if (evt.keyCode==106){
-    	if(output==""&&history!=""){
-				if(isNaN(history[history.length-1])){
-					history= history.substr(0,history.length-1);
-				}
-			}
-			if(output!="" || history!=""){
-				output= output==""?output:reverseNumberFormat(output);
-				history=history+output;
-				
-				history=history+"*";
-				printHistory(history);
-				printOutput("");
-				
-			}
+    	pressOperators("*");
     }
     if (evt.keyCode == 56 && evt.shiftKey){
-    	if(output==""&&history!=""){
-				if(isNaN(history[history.length-1])){
-					history= history.substr(0,history.length-1);
-				}
-			}
-			if(output!="" || history!=""){
-				output= output==""?output:reverseNumberFormat(output);
-				history=history+output;
-				
-				history=history+"*";
-				printHistory(history);
-				printOutput("");
-				
-			}
+    	pressOperators("*");
     }
     if (evt.keyCode == 53 && evt.shiftKey){
-    	if(output==""&&history!=""){
-				if(isNaN(history[history.length-1])){
-					history= history.substr(0,history.length-1);
-				}
-			}
-			if(output!="" || history!=""){
-				output= output==""?output:reverseNumberFormat(output);
-				history=history+output;
-				
-				history=history+"%";
-				printHistory(history);
-				printOutput("");
-				
-			}
+    	pressOperators("%");
     }
     if (evt.keyCode==111){
-    	if(output==""&&history!=""){
-				if(isNaN(history[history.length-1])){
-					history= history.substr(0,history.length-1);
-				}
-			}
-			if(output!="" || history!=""){
-				output= output==""?output:reverseNumberFormat(output);
-				history=history+output;
-				
-				history=history+"/";
-				printHistory(history);
-				printOutput("");
-				
-			}
+    	pressOperators("/");
     }
     if (evt.keyCode==191){
-    	if(output==""&&history!=""){
-				if(isNaN(history[history.length-1])){
-					history= history.substr(0,history.length-1);
-				}
-			}
-			if(output!="" || history!=""){
-				output= output==""?output:reverseNumberFormat(output);
-				history=history+output;
-				
-				history=history+"/";
-				printHistory(history);
-				printOutput("");
-				
-			}
+    	pressOperators("/");
     }
     if (evt.keyCode==8){
     	var output=reverseNumberFormat(getOutput()).toString();
